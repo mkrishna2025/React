@@ -22,7 +22,6 @@
 			},
 			createClass: function(options){
 				var newClass = function(){
-					debugger;
 					for(var index in options){
 						var prop = options[index];
 						this[index] = prop;
@@ -42,7 +41,10 @@
 				var instance = new className();
 				instance.constructor();
 				instance.componentWillMount();
+				KReact.PageMapper[instance.id] = instance;
 				return instance;
+			},
+			PageMapper: {
 			}
 		}
 	</script>
@@ -50,6 +52,7 @@
 		function onLoad(){
 			
 			var App = KReact.createClass({
+				id: 'MainScreen',
 				constructor: function(){
 					this.state = {
 						headerText: 'Hello World'
@@ -61,8 +64,13 @@
 				componentDidMount: function(){
 					debugger;
 				},
+				onButtonClick: function(options){
+					var instance = KReact.PageMapper[options];
+					instance.setState({headerText: 'Text Modified'});
+				},
 				render: function(){
-					return '<div><h1>'+this.state.headerText+'<h1><table style="width:100%"><tr><th>Firstname</th><th>Lastname</th><th>Age</th></tr><tr><td>Jill</td><td>Smith</td> <td>50</td></tr><tr><td>Eve</td><td>Jackson</td><td>94</td></tr></table></div>';
+					var button = '<button type="button" onclick="('+this.onButtonClick+')(\'MainScreen\')">Change Header</button>';
+					return '<div><h1>'+this.state.headerText+'<h1>'+button+'<table style="width:100%"><tr><th>Firstname</th><th>Lastname</th><th>Age</th></tr><tr><td>Jill</td><td>Smith</td> <td>50</td></tr><tr><td>Eve</td><td>Jackson</td><td>94</td></tr></table></div>';
 				}
 			});
 			
