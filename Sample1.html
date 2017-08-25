@@ -11,11 +11,32 @@
 				temp.innerHTML = item;
 				var htmlObject = temp.firstChild;
 				rootDiv.appendChild(htmlObject);
+			},
+			createClass: function(options){
+				var newClass = function(){
+					for(var index in options){
+						var prop = options[index];
+						this[index] = prop;
+					}
+				};
+				return newClass;
+			},
+			// creating instance 
+			createElement: function(className){
+				return new className();
 			}
 		}
 	</script>
 	<script>
 		function onLoad(){
+			var calculator = KReact.createClass({
+				addition: function(x, y){
+					return x + y;
+				}
+			});
+			var obj = KReact.createElement(calculator);
+			console.log(obj.addition(1,4));
+			
 			//document.getElementById('root').innerHTML = 'Hello World';
 			KReact.render('<div><h1>Hello World<h1><table style="width:100%"><tr><th>Firstname</th><th>Lastname</th><th>Age</th></tr><tr><td>Jill</td><td>Smith</td> <td>50</td></tr><tr><td>Eve</td><td>Jackson</td><td>94</td></tr></table></div>','root');
 		}
