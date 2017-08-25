@@ -43,7 +43,9 @@
 			
 			var App = KReact.createClass({
 				constructor: function(){
-					debugger;
+					this.state = {
+						headerText: 'Hello World'
+					}
 				},
 				componentWillMount: function(){
 					debugger;
@@ -52,7 +54,7 @@
 					debugger;
 				},
 				render: function(){
-					return '<div><h1>Hello World<h1><table style="width:100%"><tr><th>Firstname</th><th>Lastname</th><th>Age</th></tr><tr><td>Jill</td><td>Smith</td> <td>50</td></tr><tr><td>Eve</td><td>Jackson</td><td>94</td></tr></table></div>';
+					return '<div><h1>'+this.state.headerText+'<h1><table style="width:100%"><tr><th>Firstname</th><th>Lastname</th><th>Age</th></tr><tr><td>Jill</td><td>Smith</td> <td>50</td></tr><tr><td>Eve</td><td>Jackson</td><td>94</td></tr></table></div>';
 				}
 			});
 			
