@@ -15,6 +15,9 @@
 				}
 				
 				var htmlObject = temp.firstChild;
+				if(rootDiv.firstChild){
+					rootDiv.removeChild(rootDiv.firstChild);
+				}
 				rootDiv.appendChild(htmlObject);
 				if(item.componentDidMount){
 					item.componentDidMount();
