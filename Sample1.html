@@ -1,7 +1,13 @@
 <html>
 <header>
+	<script>
+		function onLoad(){
+			document.getElementById('root').innerHTML = 'Hello World';
+		}
+	</script>
 </header>
-<body>
-	Hello World
+<body onload="onLoad()">
+	<div id="root"></div>
+	
 </body>
 </html>
