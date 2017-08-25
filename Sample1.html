@@ -15,9 +15,13 @@
 				
 				var htmlObject = temp.firstChild;
 				rootDiv.appendChild(htmlObject);
+				if(item.componentDidMount){
+					item.componentDidMount();
+				}
 			},
 			createClass: function(options){
 				var newClass = function(){
+					debugger;
 					for(var index in options){
 						var prop = options[index];
 						this[index] = prop;
@@ -27,13 +31,26 @@
 			},
 			// creating instance 
 			createElement: function(className){
-				return new className();
+				var instance = new className();
+				instance.constructor();
+				instance.componentWillMount();
+				return instance;
 			}
 		}
 	</script>
 	<script>
 		function onLoad(){
+			
 			var App = KReact.createClass({
+				constructor: function(){
+					debugger;
+				},
+				componentWillMount: function(){
+					debugger;
+				},
+				componentDidMount: function(){
+					debugger;
+				},
 				render: function(){
 					return '<div><h1>Hello World<h1><table style="width:100%"><tr><th>Firstname</th><th>Lastname</th><th>Age</th></tr><tr><td>Jill</td><td>Smith</td> <td>50</td></tr><tr><td>Eve</td><td>Jackson</td><td>94</td></tr></table></div>';
 				}
