@@ -9,6 +9,7 @@
 				var temp = document.createElement('div');
 				if(item.render){
 					temp.innerHTML = item.render();
+					item.divId = whereToRender;
 				} else {
 					temp.innerHTML = item;
 				}
@@ -25,6 +26,13 @@
 					for(var index in options){
 						var prop = options[index];
 						this[index] = prop;
+					}
+					this.setState = function(props){
+						for(var index in props){
+							var prop = props[index];
+							this.state[index] = prop;
+						}
+						KReact.render(this, this.divId);
 					}
 				};
 				return newClass;
