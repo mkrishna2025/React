@@ -1,8 +1,18 @@
 <html>
 <header>
+	<script> 
+		// Creating framework to render page dynamically 
+		var KReact = {
+			version: 1.0,
+			render: function(item, whereToRender){
+				document.getElementById(whereToRender).innerHTML = item;
+			}
+		}
+	</script>
 	<script>
 		function onLoad(){
-			document.getElementById('root').innerHTML = 'Hello World';
+			//document.getElementById('root').innerHTML = 'Hello World';
+			KReact.render('Hello World', 'root');
 		}
 	</script>
 </header>
