@@ -6,9 +6,13 @@
 			version: 1.0,
 			render: function(item, whereToRender){
 				var rootDiv = document.getElementById(whereToRender);
-				
 				var temp = document.createElement('div');
-				temp.innerHTML = item;
+				if(item.render){
+					temp.innerHTML = item.render();
+				} else {
+					temp.innerHTML = item;
+				}
+				
 				var htmlObject = temp.firstChild;
 				rootDiv.appendChild(htmlObject);
 			},
@@ -29,16 +33,14 @@
 	</script>
 	<script>
 		function onLoad(){
-			var calculator = KReact.createClass({
-				addition: function(x, y){
-					return x + y;
+			var App = KReact.createClass({
+				render: function(){
+					return '<div><h1>Hello World<h1><table style="width:100%"><tr><th>Firstname</th><th>Lastname</th><th>Age</th></tr><tr><td>Jill</td><td>Smith</td> <td>50</td></tr><tr><td>Eve</td><td>Jackson</td><td>94</td></tr></table></div>';
 				}
 			});
-			var obj = KReact.createElement(calculator);
-			console.log(obj.addition(1,4));
 			
 			//document.getElementById('root').innerHTML = 'Hello World';
-			KReact.render('<div><h1>Hello World<h1><table style="width:100%"><tr><th>Firstname</th><th>Lastname</th><th>Age</th></tr><tr><td>Jill</td><td>Smith</td> <td>50</td></tr><tr><td>Eve</td><td>Jackson</td><td>94</td></tr></table></div>','root');
+			KReact.render(KReact.createElement(App),'root');
 		}
 	</script>
 </header>
