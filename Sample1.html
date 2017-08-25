@@ -6,7 +6,11 @@
 			version: 1.0,
 			render: function(item, whereToRender){
 				var rootDiv = document.getElementById(whereToRender);
-				rootDiv.innerHTML += item;
+				
+				var temp = document.createElement('div');
+				temp.innerHTML = item;
+				var htmlObject = temp.firstChild;
+				rootDiv.appendChild(htmlObject);
 			}
 		}
 	</script>
