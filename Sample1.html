@@ -24,7 +24,7 @@
 				}
 			},
 			createClass: function(options){
-				var newClass = function(){
+				return function(){
 					for(var index in options){
 						var prop = options[index];
 						this[index] = prop;
@@ -37,7 +37,6 @@
 						KReact.render(this, this.divId);
 					}
 				};
-				return newClass;
 			},
 			// creating instance 
 			createElement: function(className){
@@ -53,7 +52,6 @@
 	</script>
 	<script>
 		function onLoad(){
-			
 			var App = KReact.createClass({
 				id: 'MainScreen',
 				constructor: function(){
@@ -84,6 +82,5 @@
 </header>
 <body onload="onLoad()">
 	<div id="root"></div>
-	
 </body>
 </html>
